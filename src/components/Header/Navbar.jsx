@@ -1,22 +1,23 @@
-// import React, { Component } from 'react';
-// import {BrowserRouter, Link} from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react';
+import s from './header-navbar.module.scss';
 
-export default styled.div`
-  text-align: center;
-`;
+const Navbar = React.forwardRef(({ items, isMenuOpen }, ref) => {
+  const openClass = isMenuOpen ? s.open : '';
 
+  return (
+    <nav className={`${s.nav} ${openClass}`} ref={ref}>
+      {items.map((item) => (
+        <a
+          href={item.slug}
+          key={item.id}
+          className={`${s.nav__item}`}
+          ref={item.ref}
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+  );
+});
 
-// class Navbar extends Component {
-//     render(){
-//         return(
-//             <nav className="navBar">
-//                 <ul>
-//                     <li><Link exact to="/">Home</Link></li>
-//                     <li><Link to="/about">About</Link></li>
-//                 </ul>
-//             </nav>
-//         );
-//     }
-// }
-// export default Navbar;
+export default Navbar;

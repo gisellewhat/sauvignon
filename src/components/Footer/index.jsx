@@ -1,16 +1,16 @@
 import React from 'react';
+import Email from './Email';
+import Links from './Links';
+import s from './footer.module.scss';
 
-// import A from './A';
-import Wrapper from './Wrapper';
-
-function Footer(){
-  return(
-    <Wrapper>
-      <section>
-        Lorem ipsum dolor sit amet.
-        Giselle Que
-      </section>
-    </Wrapper>
+function Footer() {
+  return (
+    <footer className={s.footer}>
+      <div className={s.footer__wrapper}>
+        <Email />
+        <Links />
+      </div>
+    </footer>
   );
 }
 
