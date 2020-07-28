@@ -2,8 +2,8 @@
 
 :root {
   --montserrat: 'Montserrat', sans-serif;
-  
-  --color-white: #FFFFFF;
+
+  --color-white: #ffffff;
   --color-black: #000000;
 }
 
@@ -13,7 +13,9 @@ html {
   // font-size: var(--font-base-size)
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -24,9 +26,21 @@ body {
   min-height: 100vh;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 body {
+  margin: 0;
   font-family: var(--montserrat);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -43,4 +57,9 @@ a {
     height: 100%;
     object-fit: cover;
   }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }

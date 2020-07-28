@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import './styles/styles.scss';
 import App from './App';
+import Footer from './components/Footer'
 // import * as serviceWorker from './serviceWorker';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(React.createElement(App), 
-  document.getElementById('root'));
-registerServiceWorker();
+// ReactDOM.render(React.createElement(App), 
+//   document.getElementById('root'));
+// registerServiceWorker();
+
+ReactDOM.render([<App key="1" />, <Footer key="2" />], document.getElementById("root"));
+
 // ReactDOM.render(
 //   <React.StrictMode>
 //     <App />

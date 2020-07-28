@@ -1,6 +1,2 @@
 .App {
-  display: flex;
-  flex-direction: column; }
-
-.app__body {
-  height: 100vh; }
+  flex: 1 0 auto; }
