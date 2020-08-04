@@ -11,7 +11,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: var(--color-white);
+      background: var(--color-brown);
       pointer-events: none;
       padding: 24px;
       display: flex;
@@ -22,7 +22,7 @@
       opacity: 0;
 
       @supports (backdrop-filter: blur(10px)) {
-        background: rgba(var(--color-white), 0.6);
+        background: rgba(var(--color-brown), 0.6);
         backdrop-filter: blur(10px);
       }
 
@@ -38,7 +38,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--color-white);
+    background: var(--color-brown);
     pointer-events: none;
     padding: 24px;
     display: flex;
@@ -50,7 +50,7 @@
     opacity: 0;
 
     @supports (backdrop-filter: blur(10px)) {
-      background: rgba(var(--color-white), 0.6);
+      background: rgba(var(--color-brown), 0.6);
       backdrop-filter: blur(10px);
     }
 
@@ -83,5 +83,39 @@
     text-align: left;
     text-transform: uppercase;
     margin: 24px;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 0em;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      background: var(--color-brown);
+      height: 18px;
+      -webkit-transition-property: left, right;
+      transition-property: left, right;
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-timing-function: ease-out;
+      transition-timing-function: ease-out;
+    }
+
+    &:hover::before {
+      left: 0;
+      right: 0;
+    }
   }
 }

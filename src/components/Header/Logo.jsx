@@ -3,9 +3,9 @@ import s from './header-logo.module.scss';
 
 const Logo = ({ logo }) => {
   return (
-    <a href="/">
-      <div className={s.logo}>{logo}</div>
-    </a>
+    <div className={s.logo}>
+      <a href="/">{logo}</a>
+    </div>
   );
 };
 export default Logo;

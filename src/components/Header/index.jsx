@@ -1,5 +1,5 @@
 import React, { useState, useRef, createRef, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import gsap from 'gsap';
 import Logo from './Logo';
 import Navbar from './Navbar';
@@ -15,7 +15,7 @@ const Header = ({ items, logo, navPosition }) => {
   //Setup the Nav ref
   const navRef = useRef();
 
-  // Loop through the items and create a state of navItems with refs
+  //Loop through the items and create a state of navItems with refs
   //to use for our animation
   const [navItems] = useState(
     items.map((item) => {
@@ -28,44 +28,70 @@ const Header = ({ items, logo, navPosition }) => {
 
   //Setup a timeline to use
   const [menuTL] = useState(
-    // gsap.timeline({
-    //   paused: true,
-    //   defaults: { duration: 1, ease: 'expo.out' },
-    // })
+    gsap.timeline({
+      paused: true,
+      defaults: { duration: 1, ease: 'expo.out' },
+    })
   );
 
-  // Setup menuTL things and account for window resize events
+  //Setup menuTL things and account for window resize events
   useEffect(() => {
-    // Create an array with just the ref of the nav items
-    const itemsRefs = navItems.map((item) => item.ref.current);
+    //Build the timeline and worry about resize events
+    if (navPosition === 'right' || navPosition === 'center') {
+      //Create an array with just the ref of the nav items
+      const itemsRefs = navItems.map((item) => item.ref.current);
 
-    // menuTL
-    //   .fromTo(navRef.current, { opacity: 0 }, { opacity: 1 })
-    //   .fromTo(
-    //     itemsRefs,
-    //     { autoAlpha: 0, y: 48 },
-    //     { autoAlpha: 1, y: 0, stagger: 0.1 },
-    //     '-=0.4'
-    //   )
-    //   .reverse();
-      // eslint-disable-next-line
+      if (isSmallScreen) {
+        menuTL
+          .fromTo(navRef.current, { opacity: 0 }, { opacity: 1 })
+          .fromTo(
+            itemsRefs,
+            { autoAlpha: 0, y: 48 },
+            { autoAlpha: 1, y: 0, stagger: 0.1 },
+            '-=0.4'
+          )
+          .reverse();
+      } else {
+        menuTL.seek(0).clear().pause();
+        gsap.set([navRef.current, itemsRefs], { clearProps: 'all' });
+      }
+    }
   }, [isSmallScreen]);
 
-  // Run menuTL base on Menu State
+  //Setup menuTL things to work on any screen size
   useEffect(() => {
-    // menuTL.reversed(!isMenuOpen);
-    // eslint-disable-next-line
+    //Build the timeline and keep it for a full overlay all the time
+    if (navPosition === 'overlay') {
+      //Create an array with just the ref of the nav items
+      const itemsRefs = navItems.map((item) => item.ref.current);
+
+      menuTL
+        .fromTo(navRef.current, { opacity: 0 }, { opacity: 1 })
+        .fromTo(
+          itemsRefs,
+          { autoAlpha: 0, y: 48 },
+          { autoAlpha: 1, y: 0, stagger: 0.1 },
+          '-=0.4'
+        )
+        .reverse();
+    }
+  }, []);
+
+  //Run menuTL base on Menu State
+  useEffect(() => {
+    menuTL.reversed(!isMenuOpen);
   }, [isMenuOpen]);
 
-  // onClick function to set state of menu
+  //onClick function to set state of menu
   const toggleNav = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <header className={s.header}>
-      <div className={s.header__wrapper}>
+      <div className={s.header__wrapper} data-nav-position={navPosition}>
         <Logo logo={logo} />
-        <Navbar items={items} isMenuOpen={isMenuOpen} ref={navRef} />
+        <Navbar items={navItems} isMenuOpen={isMenuOpen} ref={navRef} />
         <Burger toggleNav={toggleNav} isMenuOpen={isMenuOpen} />
       </div>
     </header>
@@ -73,3 +99,15 @@ const Header = ({ items, logo, navPosition }) => {
 };
 
 export default Header;
+
+//Adding some propTypes for some checks and balances
+Header.propTypes = {
+  items: PropTypes.array.isRequired,
+  logo: PropTypes.element.isRequired,
+  navPosition: PropTypes.oneOf(["center", "right", "overlay"])
+};
+
+// Specifies the default value for the nvaPosition prop:
+Header.defaultProps = {
+  navPosition: "center"
+};

@@ -1,5 +1,30 @@
 @import '../../styles/config/config.scss';
 
 .section {
-  height: 40vh;;
+  height: 40vh;
+}
+
+.email {
+  &__link {
+    text-decoration-thickness: 1px;
+  }
+
+  &__header {
+    margin-top: 20px;
+    font-size: 50px;
+
+    @include media-query($medium-down) {
+      font-size: 35px;
+    }
+  }
+}
+
+.socials {
+  display: block;
+
+  &__link {
+    margin: 24px 24px 24px 0;
+    display: inline-block;
+    font-weight: bold;
+  }
 }

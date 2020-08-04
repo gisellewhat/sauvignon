@@ -15,7 +15,7 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header items={navigation} logo={<Logo />} navPosition="center" />
+        <Header items={navigation} logo={<Logo />} navPosition="right" />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/about" component={AboutPage} />

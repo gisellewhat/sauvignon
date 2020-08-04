@@ -6,8 +6,10 @@ import s from './footer.module.scss';
 function Footer() {
   return (
     <footer className={s.footer}>
-      <Email />
-      <Links />
+      <div className="container__wrapper u-paddingT100 u-paddingB100">
+        <Email />
+        <Links />
+      </div>
     </footer>
   );
 }

@@ -1,15 +1,29 @@
 import React from 'react';
-import Section from '../Section';
 import s from './footer-email.module.scss';
 
 const Email = () => {
   return (
-    <Section className={s.section}>
-      Get in touch with me
-      <a className={s.email} href="mailto:giselle.que@gmail.com">
-        <h2>giselle.que@gmail.com</h2>
-      </a>
-    </Section>
+    <section className={s.section}>
+      <div className="overline">Let's get in touch</div>
+      <h2 className={s.email__header}>
+        <a className={s.email__link} href="mailto:giselle.que@gmail.com">
+          giselle.que@gmail.com
+        </a>
+      </h2>
+      <div className="container u-paddingT100">
+        <div className={s.socials}>
+          <div className={s.socials__link}>
+            <a target="_blank" href="https://www.linkedin.com/in/giselle-que/">LinkedIn</a>
+          </div>
+          <div className={s.socials__link}>
+            <a target="_blank" href="">Behance</a>
+          </div>
+          <div className={s.socials__link}>
+            <a target="_blank" href="">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 export default Email;

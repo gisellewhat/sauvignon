@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import s from './section.module.scss';
 
-const Section = styled.section.attrs((props) => ({
-  className: s.section,
-}))`
-  margin: 3em auto;
+const Section = styled.div`
+  margin: 0 auto;
+  padding:3em 1.4em;
 `;
 
 export default Section;
